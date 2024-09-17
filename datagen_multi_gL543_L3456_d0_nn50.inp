@@ -1,0 +1,49 @@
+Montecarlo:
+names are x1-x6 y1-y6 g;
+nobservations=50;
+nreps=2000;
+seed=12345;
+cutpoints=g(0);
+repsave=all;
+save=/gpfs/home/CGMD/datagen/gL543_L3456_d0_nn50/rep*.dat;
+
+Model population:
+fx by x1@.3 x2@.45 x3@.6 x4@.3 x5@.45 x6@.6; 
+gfx by x1@.5 x2@.4 x3@.3;
+fx with gfx@0;
+gfx@1;
+
+fy by y1@.3 y2@.45 y3@.6 y4@.3 y5@.45 y6@.6; 
+gfy by y1@.5 y2@.4 y3@.3;
+fy with gfy@0;
+gfy@1;
+
+gfx with gfy@0;
+gfx with fy@0;
+gfy with fx@0;
+
+x1@.66; x2@.6375; x3@.55; x4@.91; x5@.7975; x6@.64;
+y1@.66; y2@.6375; y3@.55; y4@.91; y5@.7975; y6@.64;
+
+[x1-x6@0];[y1-y6@0];
+[gfx@0];[gfy@0];
+
+fy on fx@.5 g@0;
+fx on g@.4;
+fy@.75;[fy@0];
+fx@.96;[fx@-.20];
+g@1;[g@0];
+
+Model:
+fx by x1 x2 x3 x4 x5 x6; 
+gfx by x1 x2 x3;
+fx with gfx@0;
+
+fy by y1 y2 y3 y4 y5 y6; 
+gfy by y1 y2 y3;
+fy with gfy@0;
+
+gfx with gfy@0;
+
+fy on fx g;
+fx on g;

@@ -1,0 +1,29 @@
+DATA:
+file=replist.dat;
+type=montecarlo;
+variances = NOCHECK;
+
+VARIABLE: 
+names = g uwmeanx uwmeany wmeanx wmeany fsx fsy alp_x alp_y 
+evx_alp evy_alp;
+usevariables = uwmeanx uwmeany g;
+missing = all (9999);
+constraint = evx_alp evy_alp;
+
+ANALYSIS:
+MODEL:
+fx by uwmeanx;
+fy by uwmeany;
+fy on fx g;
+fx with g;
+
+uwmeanx (rvmx);
+uwmeany (rvmy);
+
+MODEL CONSTRAINT:
+rvmx = evx_alp;
+rvmy = evy_alp;
+
+OUTPUT:tech9;
+SAVEDATA:
+ results=res_reladjust_alp.dat;

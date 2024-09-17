@@ -1,0 +1,20 @@
+DATA:
+file=replist.dat;
+type=montecarlo;
+variances = NOCHECK;
+
+VARIABLE: 
+names = g uwmeanx uwmeany wmeanx wmeany fsx fsy 
+alp_x alp_y evx_alp evy_alp;
+usevariables = fsx fsy g;
+missing = all (9999);
+
+ANALYSIS:
+
+MODEL:
+fsy on fsx g;
+fsx with g;
+
+OUTPUT: stdy tech9 stdyx;
+SAVEDATA:
+ results=res_factorscore.dat;
